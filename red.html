@@ -14,12 +14,11 @@
 
     :root {
       color-scheme: light dark;
-      --logo-url: url("https://tse2.mm.bing.net/th/id/OIP.vszVofbJ-77ojfJADRG1uAHaHk?pid=Api&P=0&h=180");
 
       --bg: #000000;
       --text: #ffffff;
       --muted: #b2b2b8;
-      --muted2: #a7abb6;
+      --muted2: #9aa3b2;
 
       --panel: #1d1d21;
       --panel-border: #394057;
@@ -49,6 +48,7 @@
       --mobile-bottom-center: #3f3d40;
       --mobile-bottom-text: #ffffff;
       --lang-text: #d5d9df;
+      --meta-text: #f4f4f4;
     }
 
     @media (prefers-color-scheme: light) {
@@ -56,13 +56,13 @@
         --bg: #ffffff;
         --text: #111111;
         --muted: #6b7280;
-        --muted2: #7b8190;
+        --muted2: #748092;
 
         --panel: #ffffff;
-        --panel-border: #d9dee7;
+        --panel-border: #e5e7eb;
 
-        --field-bg: #fafafa;
-        --field-border: #d2d7e0;
+        --field-bg: #ffffff;
+        --field-border: #d1d5db;
         --field-text: #111111;
         --focus: #4b78d4;
 
@@ -71,21 +71,22 @@
 
         --visual-bg: #f6f7f9;
         --footer: #fafafa;
-        --footer-border: #e3e6ec;
+        --footer-border: #e5e7eb;
 
-        --mobile-bg-1: #ffffff;
-        --mobile-bg-2: #f2f4f7;
-        --mobile-outline: #0095f6;
-        --mobile-field-bg: #ffffff;
-        --mobile-field-border: #d8dde7;
-        --mobile-field-text: #111111;
-        --mobile-placeholder: #7b8190;
-        --mobile-btn-bg: #0095f6;
+        --mobile-bg-1: #fafafa;
+        --mobile-bg-2: #f1f3f5;
+        --mobile-outline: #1787f2;
+        --mobile-field-bg: #f7f7f7;
+        --mobile-field-border: #cfd4dc;
+        --mobile-field-text: #617086;
+        --mobile-placeholder: #7b8798;
+        --mobile-btn-bg: #1769df;
         --mobile-btn-text: #ffffff;
         --mobile-bottom-bar: #ececec;
         --mobile-bottom-center: #d8d8d8;
         --mobile-bottom-text: #111111;
-        --lang-text: #555b66;
+        --lang-text: #4d6075;
+        --meta-text: #101418;
       }
     }
 
@@ -345,10 +346,6 @@
       margin: 24px 0 28px;
     }
 
-    .btn-login:hover {
-      filter: brightness(1.05);
-    }
-
     .forgot {
       display: block;
       text-align: center;
@@ -391,6 +388,7 @@
     .meta-block {
       text-align: center;
       margin-top: 10px;
+      color: var(--meta-text);
     }
 
     .meta-svg {
@@ -469,8 +467,9 @@
         padding-top: 28px;
         text-align: center;
         color: var(--lang-text);
-        font-size: 14px;
+        font-size: 15px;
         font-weight: 500;
+        letter-spacing: 0.1px;
       }
 
       .mobile-screen {
@@ -478,16 +477,15 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 30px 24px 16px;
+        padding: 34px 16px 14px;
       }
 
       .mobile-logo-img {
-        width: 84px;
-        height: 84px;
-        margin: 30px 0 44px;
+        width: 92px;
+        height: 92px;
+        margin: 26px 0 70px;
         display: block;
         object-fit: contain;
-        border-radius: 20px;
       }
 
       .mobile-form {
@@ -496,123 +494,153 @@
       }
 
       .mobile-field {
-        margin-bottom: 24px;
+        margin-bottom: 16px;
       }
 
       .mobile-field input {
         width: 100%;
-        height: 72px;
-        background: var(--mobile-field-bg);
+        height: 78px;
+        background: transparent;
         border: 2px solid var(--mobile-field-border);
-        border-radius: 22px;
+        border-radius: 24px;
         color: var(--mobile-field-text);
-        padding: 0 32px;
-        font-size: 12px;
+        padding: 0 22px;
+        font-size: 26px;
+        font-weight: 500;
         outline: none;
+        line-height: 1;
       }
 
       .mobile-field input::placeholder {
         color: var(--mobile-placeholder);
+        opacity: 1;
       }
 
       .mobile-btn {
         width: 100%;
-        height: 84px;
+        height: 76px;
         border: none;
         border-radius: 999px;
         background: var(--mobile-btn-bg);
         color: var(--mobile-btn-text);
-        font-size: 32px;
+        font-size: 27px;
         font-weight: 500;
-        margin-top: 6px;
+        margin-top: 18px;
       }
 
       .mobile-forgot {
         display: block;
         text-align: center;
-        color: var(--text);
+        color: #101418;
         font-size: 24px;
         font-weight: 500;
-        margin: 28px 0 78px;
+        margin: 30px 0 0;
+      }
+
+      .mobile-actions-spacer {
+        flex: 1;
+        min-height: 150px;
       }
 
       .mobile-create {
-        margin-top: auto;
         width: 100%;
-        height: 92px;
+        height: 76px;
         border-radius: 999px;
-        border: 3px solid var(--mobile-outline);
+        border: 2px solid var(--mobile-outline);
         background: transparent;
         color: var(--mobile-outline);
-        font-size: 31px;
+        font-size: 26px;
         font-weight: 500;
       }
 
       .mobile-meta {
         display: flex;
         justify-content: center;
-        margin: 34px 0 22px;
+        margin: 28px 0 18px;
+        color: var(--meta-text);
+      }
+
+      .mobile-meta .meta-svg {
+        width: 108px;
+        margin-bottom: 0;
       }
 
       .mobile-bottom-bar {
-        background: var(--mobile-bottom-bar);
-        height: 94px;
-        border-top-left-radius: 24px;
-        border-top-right-radius: 24px;
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        padding: 0 18px;
-      }
-
-      .bar-left, .bar-right {
-        color: var(--mobile-bottom-text);
-        font-size: 34px;
-        line-height: 1;
-      }
-
-      .bar-center {
-        flex: 1;
-        height: 58px;
-        background: var(--mobile-bottom-center);
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--mobile-bottom-text);
-        font-size: 26px;
-        font-weight: 500;
+        display: none;
       }
     }
 
     @media (max-width: 520px) {
+      .mobile-top-lang {
+        padding-top: 20px;
+        font-size: 13px;
+      }
+
+      .mobile-screen {
+        padding: 26px 16px 12px;
+      }
+
+      .mobile-logo-img {
+        width: 84px;
+        height: 84px;
+        margin: 22px 0 62px;
+      }
+
+      .mobile-field {
+        margin-bottom: 14px;
+      }
+
       .mobile-field input {
-        font-size: 20px;
         height: 62px;
+        border-radius: 20px;
         padding: 0 24px;
+        font-size: 20px;
+        font-weight: 500;
       }
 
       .mobile-btn {
-        height: 72px;
-        font-size: 24px;
-      }
-
-      .mobile-create {
-        height: 72px;
-        font-size: 22px;
+        height: 58px;
+        margin-top: 12px;
+        font-size: 18px;
       }
 
       .mobile-forgot {
         font-size: 18px;
+        margin-top: 22px;
       }
 
-      .mobile-bottom-bar {
-        height: 82px;
+      .mobile-actions-spacer {
+        min-height: 120px;
       }
 
-      .bar-center {
-        height: 50px;
-        font-size: 20px;
+      .mobile-create {
+        height: 58px;
+        font-size: 18px;
+      }
+
+      .mobile-meta {
+        margin: 24px 0 16px;
+      }
+
+      .mobile-meta .meta-svg {
+        width: 86px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .mobile-screen {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .mobile-field input {
+        font-size: 18px;
+        padding: 0 20px;
+      }
+
+      .mobile-btn,
+      .mobile-create {
+        font-size: 17px;
       }
     }
   </style>
@@ -744,6 +772,8 @@
 
         <a class="mobile-forgot" href="#">Forgot password?</a>
 
+        <div class="mobile-actions-spacer"></div>
+
         <button class="mobile-create" type="button">Create new account</button>
 
         <div class="mobile-meta">
@@ -754,6 +784,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </body>
 </html>
