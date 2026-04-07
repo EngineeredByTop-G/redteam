@@ -4,37 +4,97 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Instagram</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      color-scheme: light dark;
+      --logo-url: url("https://tse4.mm.bing.net/th/id/OIP.O4Y8o8o3R9L_IuuKi8uDAgHaHa?pid=Api&P=0&h=180");
+
+      --bg: #000000;
+      --text: #ffffff;
+      --muted: #b2b2b8;
+      --muted2: #a7abb6;
+
+      --panel: #1d1d21;
+      --panel-border: #394057;
+
+      --field-bg: #1d1d21;
+      --field-border: #4a4d63;
+      --field-text: #f1f1f1;
+      --focus: #6e80ac;
+
+      --blue: #174785;
+      --blue-border: #2c87ff;
+
+      --visual-bg: #01050b;
+      --footer: #040b15;
+      --footer-border: #36405d;
+
+      --mobile-bg-1: #102532;
+      --mobile-bg-2: #1a2730;
+      --mobile-outline: #2b8fff;
+      --mobile-field-bg: rgba(18,33,44,.54);
+      --mobile-field-border: rgba(96,129,154,.58);
+      --mobile-field-text: #dfe6ee;
+      --mobile-placeholder: #98a9b9;
+      --mobile-btn-bg: #1267da;
+      --mobile-btn-text: #f1f5fb;
+      --mobile-bottom-bar: rgba(53,51,52,.95);
+      --mobile-bottom-center: #3f3d40;
+      --mobile-bottom-text: #ffffff;
+      --lang-text: #d5d9df;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #ffffff;
+        --text: #111111;
+        --muted: #6b7280;
+        --muted2: #7b8190;
+
+        --panel: #ffffff;
+        --panel-border: #d9dee7;
+
+        --field-bg: #fafafa;
+        --field-border: #d2d7e0;
+        --field-text: #111111;
+        --focus: #4b78d4;
+
+        --blue: #0095f6;
+        --blue-border: #0095f6;
+
+        --visual-bg: #f6f7f9;
+        --footer: #fafafa;
+        --footer-border: #e3e6ec;
+
+        --mobile-bg-1: #ffffff;
+        --mobile-bg-2: #f2f4f7;
+        --mobile-outline: #0095f6;
+        --mobile-field-bg: #ffffff;
+        --mobile-field-border: #d8dde7;
+        --mobile-field-text: #111111;
+        --mobile-placeholder: #7b8190;
+        --mobile-btn-bg: #0095f6;
+        --mobile-btn-text: #ffffff;
+        --mobile-bottom-bar: #ececec;
+        --mobile-bottom-center: #d8d8d8;
+        --mobile-bottom-text: #111111;
+        --lang-text: #555b66;
+      }
+    }
+
     html, body {
       min-height: 100%;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-      background: #000;
-      color: #fff;
+      background: var(--bg);
+      color: var(--text);
       overflow-x: hidden;
-    }
-    a { text-decoration: none; color: inherit; }
-    button, input { font: inherit; }
-
-    :root{
-      --bg:#000000;
-      --panel:#1d1d21;
-      --panel-border:#5a5a5e;
-      --field-border:#4a4d63;
-      --field-bg:#1d1d21;
-      --text:#ffffff;
-      --muted:#b2b2b8;
-      --muted2:#a7abb6;
-      --blue:#174785;
-      --blue-border:#2c87ff;
-      --footer:#040b15;
-      --footer-border:#36405d;
-      --mobile-bg-1:#102532;
-      --mobile-bg-2:#1a2730;
-      --mobile-outline:#2b8fff;
     }
 
     body {
@@ -42,11 +102,14 @@
       flex-direction: column;
     }
 
+    a { text-decoration: none; color: inherit; }
+    button, input, select { font: inherit; }
+
     .page {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      background: #000;
+      background: var(--bg);
     }
 
     .main {
@@ -62,9 +125,9 @@
     .visual {
       width: 57%;
       min-height: 680px;
-      border-right: 1px solid #394057;
-      border-bottom: 1px solid #394057;
-      background: #01050b;
+      border-right: 1px solid var(--panel-border);
+      border-bottom: 1px solid var(--panel-border);
+      background: var(--visual-bg);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -81,14 +144,16 @@
 
     .hero-copy {
       width: 420px;
-      color: #fff;
+      color: var(--text);
     }
 
-    .hero-logo {
+    .hero-logo-img {
       width: 58px;
       height: 58px;
       margin-bottom: 28px;
       display: block;
+      object-fit: contain;
+      border-radius: 14px;
     }
 
     .hero-title {
@@ -97,6 +162,7 @@
       font-weight: 400;
       letter-spacing: -0.4px;
       margin-bottom: 34px;
+      color: var(--text);
     }
 
     .hero-title .grad {
@@ -117,8 +183,8 @@
       position: absolute;
       overflow: hidden;
       border-radius: 24px;
-      box-shadow: 0 14px 36px rgba(0,0,0,.4);
-      background: #2a2a2a;
+      box-shadow: 0 14px 36px rgba(0,0,0,.18);
+      background: #d9d9d9;
     }
 
     .card-photo img {
@@ -143,7 +209,7 @@
       border-radius: 999px;
       padding: 8px 14px;
       font-size: 20px;
-      box-shadow: 0 10px 24px rgba(0,0,0,.25);
+      box-shadow: 0 10px 24px rgba(0,0,0,.18);
     }
 
     .badge-heart {
@@ -159,6 +225,7 @@
       justify-content: center;
       background: linear-gradient(180deg,#ff6a00,#ff006e);
       font-size: 20px;
+      color: #fff;
     }
 
     .badge-status {
@@ -184,7 +251,7 @@
       border-radius: 50%;
       border: 3px solid #ff1493;
       background: radial-gradient(circle at center, #8dff95 0%, #26c96c 56%, #0d8f45 100%);
-      box-shadow: 0 8px 18px rgba(0,0,0,.24);
+      box-shadow: 0 8px 18px rgba(0,0,0,.18);
     }
 
     .pill-1, .pill-2 {
@@ -198,6 +265,7 @@
 
     .pill-1 { left: 48px; width: 105px; }
     .pill-2 { left: 164px; width: 104px; }
+
     .pill-heart {
       position: absolute;
       left: 285px;
@@ -211,8 +279,8 @@
     .auth-side {
       width: 43%;
       min-height: 680px;
-      border-left: 1px solid #394057;
-      border-bottom: 1px solid #394057;
+      border-left: 1px solid var(--panel-border);
+      border-bottom: 1px solid var(--panel-border);
       background: var(--panel);
       display: flex;
       align-items: flex-start;
@@ -229,7 +297,7 @@
       font-size: 18px;
       font-weight: 700;
       margin-bottom: 34px;
-      color: #fff;
+      color: var(--text);
     }
 
     .field {
@@ -242,7 +310,7 @@
       background: var(--field-bg);
       border: 1px solid var(--field-border);
       border-radius: 17px;
-      color: #f1f1f1;
+      color: var(--field-text);
       padding: 0 18px;
       font-size: 15px;
       outline: none;
@@ -253,7 +321,7 @@
     }
 
     .field input:focus {
-      border-color: #6e80ac;
+      border-color: var(--focus);
       box-shadow: 0 0 0 1px rgba(44,135,255,.08) inset;
     }
 
@@ -271,7 +339,7 @@
     .btn-login {
       height: 56px;
       background: var(--blue);
-      color: #8c919b;
+      color: #ffffff;
       font-size: 16px;
       font-weight: 700;
       margin: 24px 0 28px;
@@ -284,7 +352,7 @@
     .forgot {
       display: block;
       text-align: center;
-      color: #fff;
+      color: var(--text);
       font-size: 15px;
       font-weight: 700;
       margin-bottom: 72px;
@@ -294,7 +362,7 @@
       height: 48px;
       background: transparent;
       border: 1px solid var(--field-border);
-      color: #fff;
+      color: var(--text);
       font-size: 15px;
       font-weight: 600;
       margin-bottom: 16px;
@@ -359,8 +427,10 @@
       margin-bottom: 18px;
     }
 
-    .footer-links a {
-      color: #bcc1cb;
+    .footer-links a,
+    .footer-bottom-wrap,
+    .footer-select {
+      color: var(--muted);
       font-size: 13px;
     }
 
@@ -370,16 +440,12 @@
       justify-content: center;
       gap: 22px;
       flex-wrap: wrap;
-      color: #bcc1cb;
-      font-size: 13px;
     }
 
     .footer-select {
       appearance: none;
       background: transparent;
-      color: #bcc1cb;
       border: none;
-      font-size: 13px;
       outline: none;
     }
 
@@ -402,7 +468,7 @@
       .mobile-top-lang {
         padding-top: 28px;
         text-align: center;
-        color: #d5d9df;
+        color: var(--lang-text);
         font-size: 14px;
         font-weight: 500;
       }
@@ -415,11 +481,13 @@
         padding: 30px 24px 16px;
       }
 
-      .mobile-logo {
+      .mobile-logo-img {
         width: 84px;
         height: 84px;
         margin: 30px 0 44px;
         display: block;
+        object-fit: contain;
+        border-radius: 20px;
       }
 
       .mobile-form {
@@ -434,17 +502,17 @@
       .mobile-field input {
         width: 100%;
         height: 72px;
-        background: rgba(18,33,44,.54);
-        border: 2px solid rgba(96,129,154,.58);
+        background: var(--mobile-field-bg);
+        border: 2px solid var(--mobile-field-border);
         border-radius: 22px;
-        color: #dfe6ee;
+        color: var(--mobile-field-text);
         padding: 0 32px;
         font-size: 28px;
         outline: none;
       }
 
       .mobile-field input::placeholder {
-        color: #98a9b9;
+        color: var(--mobile-placeholder);
       }
 
       .mobile-btn {
@@ -452,8 +520,8 @@
         height: 84px;
         border: none;
         border-radius: 999px;
-        background: #1267da;
-        color: #f1f5fb;
+        background: var(--mobile-btn-bg);
+        color: var(--mobile-btn-text);
         font-size: 32px;
         font-weight: 500;
         margin-top: 6px;
@@ -462,7 +530,7 @@
       .mobile-forgot {
         display: block;
         text-align: center;
-        color: #fff;
+        color: var(--text);
         font-size: 24px;
         font-weight: 500;
         margin: 28px 0 78px;
@@ -475,7 +543,7 @@
         border-radius: 999px;
         border: 3px solid var(--mobile-outline);
         background: transparent;
-        color: #42a1ff;
+        color: var(--mobile-outline);
         font-size: 31px;
         font-weight: 500;
       }
@@ -487,7 +555,7 @@
       }
 
       .mobile-bottom-bar {
-        background: rgba(53,51,52,.95);
+        background: var(--mobile-bottom-bar);
         height: 94px;
         border-top-left-radius: 24px;
         border-top-right-radius: 24px;
@@ -498,7 +566,7 @@
       }
 
       .bar-left, .bar-right {
-        color: #ececec;
+        color: var(--mobile-bottom-text);
         font-size: 34px;
         line-height: 1;
       }
@@ -506,12 +574,12 @@
       .bar-center {
         flex: 1;
         height: 58px;
-        background: #3f3d40;
+        background: var(--mobile-bottom-center);
         border-radius: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #fff;
+        color: var(--mobile-bottom-text);
         font-size: 26px;
         font-weight: 500;
       }
@@ -556,21 +624,11 @@
       <section class="visual">
         <div class="visual-inner">
           <div class="hero-copy">
-            <svg class="hero-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Instagram icon">
-              <defs>
-                <linearGradient id="g1" x1="0" y1="100" x2="100" y2="0">
-                  <stop offset="0%" stop-color="#feda75"/>
-                  <stop offset="35%" stop-color="#fa7e1e"/>
-                  <stop offset="60%" stop-color="#d62976"/>
-                  <stop offset="85%" stop-color="#962fbf"/>
-                  <stop offset="100%" stop-color="#4f5bd5"/>
-                </linearGradient>
-              </defs>
-              <rect x="0" y="0" width="100" height="100" rx="24" fill="url(#g1)"/>
-              <rect x="22" y="22" width="56" height="56" rx="16" fill="none" stroke="#fff" stroke-width="6"/>
-              <circle cx="50" cy="50" r="15" fill="none" stroke="#fff" stroke-width="6"/>
-              <circle cx="73" cy="27" r="4.5" fill="#fff"/>
-            </svg>
+            <img
+              class="hero-logo-img"
+              src="https://tse4.mm.bing.net/th/id/OIP.O4Y8o8o3R9L_IuuKi8uDAgHaHa?pid=Api&P=0&h=180"
+              alt="Instagram logo"
+            />
 
             <h1 class="hero-title">
               See everyday moments from your
@@ -626,8 +684,8 @@
 
           <div class="meta-block">
             <svg class="meta-svg" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" aria-label="Meta logo">
-              <path d="M18 28c0-8 4-16 8-16 5 0 9 16 14 16 4 0 6-5 6-10 0-6-3-10-8-10-7 0-11 7-14 13C21 15 17 8 10 8 5 8 2 12 2 18c0 5 2 10 6 10 5 0 9-16 14-16 4 0 8 8 8 16" fill="none" stroke="#f4f4f4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-              <text x="58" y="28" fill="#f4f4f4" font-size="22" font-family="Inter, Arial, sans-serif">Meta</text>
+              <path d="M18 28c0-8 4-16 8-16 5 0 9 16 14 16 4 0 6-5 6-10 0-6-3-10-8-10-7 0-11 7-14 13C21 15 17 8 10 8 5 8 2 12 2 18c0 5 2 10 6 10 5 0 9-16 14-16 4 0 8 8 8 16" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              <text x="58" y="28" fill="currentColor" font-size="22" font-family="Inter, Arial, sans-serif">Meta</text>
             </svg>
             <div class="uk-note">
               In the UK, you can create a detailed report for something that breaks the law.
@@ -668,21 +726,11 @@
       <div class="mobile-top-lang">English (US)</div>
 
       <div class="mobile-screen">
-        <svg class="mobile-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Instagram icon">
-          <defs>
-            <linearGradient id="g2" x1="0" y1="100" x2="100" y2="0">
-              <stop offset="0%" stop-color="#feda75"/>
-              <stop offset="35%" stop-color="#fa7e1e"/>
-              <stop offset="60%" stop-color="#d62976"/>
-              <stop offset="85%" stop-color="#962fbf"/>
-              <stop offset="100%" stop-color="#4f5bd5"/>
-            </linearGradient>
-          </defs>
-          <rect x="0" y="0" width="100" height="100" rx="24" fill="url(#g2)"/>
-          <rect x="22" y="22" width="56" height="56" rx="16" fill="none" stroke="#fff" stroke-width="6"/>
-          <circle cx="50" cy="50" r="15" fill="none" stroke="#fff" stroke-width="6"/>
-          <circle cx="73" cy="27" r="4.5" fill="#fff"/>
-        </svg>
+        <img
+          class="mobile-logo-img"
+          src="https://tse4.mm.bing.net/th/id/OIP.O4Y8o8o3R9L_IuuKi8uDAgHaHa?pid=Api&P=0&h=180"
+          alt="Instagram logo"
+        />
 
         <form class="mobile-form" onsubmit="event.preventDefault(); alert('Static demo page only.');">
           <div class="mobile-field">
@@ -700,19 +748,12 @@
 
         <div class="mobile-meta">
           <svg class="meta-svg" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" aria-label="Meta logo">
-            <path d="M18 28c0-8 4-16 8-16 5 0 9 16 14 16 4 0 6-5 6-10 0-6-3-10-8-10-7 0-11 7-14 13C21 15 17 8 10 8 5 8 2 12 2 18c0 5 2 10 6 10 5 0 9-16 14-16 4 0 8 8 8 16" fill="none" stroke="#f4f4f4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-            <text x="58" y="28" fill="#f4f4f4" font-size="22" font-family="Inter, Arial, sans-serif">Meta</text>
+            <path d="M18 28c0-8 4-16 8-16 5 0 9 16 14 16 4 0 6-5 6-10 0-6-3-10-8-10-7 0-11 7-14 13C21 15 17 8 10 8 5 8 2 12 2 18c0 5 2 10 6 10 5 0 9-16 14-16 4 0 8 8 8 16" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="58" y="28" fill="currentColor" font-size="22" font-family="Inter, Arial, sans-serif">Meta</text>
           </svg>
         </div>
       </div>
-
-      <div class="mobile-bottom-bar">
-        <div class="bar-left">▱</div>
-        <div class="bar-center">instagram.com</div>
-        <div class="bar-right">↻</div>
-      </div>
     </div>
-
   </div>
 </body>
 </html>
