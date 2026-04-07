@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instagram</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100%;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    button, input { font: inherit; }
+
+    :root{
+      --bg:#000000;
+      --panel:#1d1d21;
+      --panel-border:#5a5a5e;
+      --field-border:#4a4d63;
+      --field-bg:#1d1d21;
+      --text:#ffffff;
+      --muted:#b2b2b8;
+      --muted2:#a7abb6;
+      --blue:#174785;
+      --blue-border:#2c87ff;
+      --footer:#040b15;
+      --footer-border:#36405d;
+      --mobile-bg-1:#102532;
+      --mobile-bg-2:#1a2730;
+      --mobile-outline:#2b8fff;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #000;
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      padding: 0;
+      min-height: calc(100vh - 86px);
+    }
+
+    .visual {
+      width: 57%;
+      min-height: 680px;
+      border-right: 1px solid #394057;
+      border-bottom: 1px solid #394057;
+      background: #01050b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .visual-inner {
+      width: min(760px, 88%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .hero-copy {
+      width: 420px;
+      color: #fff;
+    }
+
+    .hero-logo {
+      width: 58px;
+      height: 58px;
+      margin-bottom: 28px;
+      display: block;
+    }
+
+    .hero-title {
+      font-size: 34px;
+      line-height: 1.22;
+      font-weight: 400;
+      letter-spacing: -0.4px;
+      margin-bottom: 34px;
+    }
+
+    .hero-title .grad {
+      background: linear-gradient(90deg, #ff7a00 0%, #ff2d55 42%, #c800ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .stack-wrap {
+      position: relative;
+      width: 360px;
+      height: 335px;
+      margin-left: 24px;
+    }
+
+    .card-photo {
+      position: absolute;
+      overflow: hidden;
+      border-radius: 24px;
+      box-shadow: 0 14px 36px rgba(0,0,0,.4);
+      background: #2a2a2a;
+    }
+
+    .card-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.05) contrast(1.02);
+    }
+
+    .card-a { width: 150px; height: 195px; left: 15px; top: 60px; transform: rotate(-10deg); }
+    .card-b { width: 175px; height: 220px; left: 88px; top: 5px; z-index: 2; }
+    .card-c { width: 150px; height: 195px; left: 205px; top: 72px; transform: rotate(8deg); }
+
+    .badge-bubble {
+      position: absolute;
+      left: 116px;
+      top: -8px;
+      z-index: 5;
+      background: #fff;
+      color: #1f1f1f;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 20px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.25);
+    }
+
+    .badge-heart {
+      position: absolute;
+      left: 0px;
+      top: 178px;
+      z-index: 5;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg,#ff6a00,#ff006e);
+      font-size: 20px;
+    }
+
+    .badge-status {
+      position: absolute;
+      right: 2px;
+      top: 112px;
+      z-index: 5;
+      background: #25d366;
+      color: #fff;
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .badge-ring {
+      position: absolute;
+      right: 16px;
+      top: 150px;
+      z-index: 5;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 3px solid #ff1493;
+      background: radial-gradient(circle at center, #8dff95 0%, #26c96c 56%, #0d8f45 100%);
+      box-shadow: 0 8px 18px rgba(0,0,0,.24);
+    }
+
+    .pill-1, .pill-2 {
+      position: absolute;
+      bottom: 18px;
+      height: 22px;
+      border-radius: 999px;
+      border: 3px solid rgba(255,255,255,.94);
+      z-index: 5;
+    }
+
+    .pill-1 { left: 48px; width: 105px; }
+    .pill-2 { left: 164px; width: 104px; }
+    .pill-heart {
+      position: absolute;
+      left: 285px;
+      bottom: 16px;
+      z-index: 6;
+      font-size: 24px;
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0,0,0,.35);
+    }
+
+    .auth-side {
+      width: 43%;
+      min-height: 680px;
+      border-left: 1px solid #394057;
+      border-bottom: 1px solid #394057;
+      background: var(--panel);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 54px 54px 30px;
+    }
+
+    .auth-box {
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .auth-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 34px;
+      color: #fff;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    .field input {
+      width: 100%;
+      height: 58px;
+      background: var(--field-bg);
+      border: 1px solid var(--field-border);
+      border-radius: 17px;
+      color: #f1f1f1;
+      padding: 0 18px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .field input::placeholder {
+      color: var(--muted2);
+    }
+
+    .field input:focus {
+      border-color: #6e80ac;
+      box-shadow: 0 0 0 1px rgba(44,135,255,.08) inset;
+    }
+
+    .btn {
+      width: 100%;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .btn-login {
+      height: 56px;
+      background: var(--blue);
+      color: #8c919b;
+      font-size: 16px;
+      font-weight: 700;
+      margin: 24px 0 28px;
+    }
+
+    .btn-login:hover {
+      filter: brightness(1.05);
+    }
+
+    .forgot {
+      display: block;
+      text-align: center;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 72px;
+    }
+
+    .btn-outline {
+      height: 48px;
+      background: transparent;
+      border: 1px solid var(--field-border);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .btn-outline.blue {
+      border-color: var(--blue-border);
+      color: var(--blue-border);
+    }
+
+    .fb-icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #1877f2;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      margin-right: 10px;
+      flex: 0 0 auto;
+    }
+
+    .meta-block {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .meta-svg {
+      display: inline-block;
+      width: 72px;
+      height: auto;
+      margin-bottom: 18px;
+      opacity: .96;
+    }
+
+    .uk-note {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .uk-note a {
+      color: var(--blue-border);
+      font-weight: 700;
+    }
+
+    .footer {
+      background: var(--footer);
+      border-top: 1px solid var(--footer-border);
+      padding: 18px 20px 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 22px;
+      margin-bottom: 18px;
+    }
+
+    .footer-links a {
+      color: #bcc1cb;
+      font-size: 13px;
+    }
+
+    .footer-bottom-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      flex-wrap: wrap;
+      color: #bcc1cb;
+      font-size: 13px;
+    }
+
+    .footer-select {
+      appearance: none;
+      background: transparent;
+      color: #bcc1cb;
+      border: none;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .mobile-wrap {
+      display: none;
+    }
+
+    @media (max-width: 980px) {
+      .main, .footer {
+        display: none;
+      }
+
+      .mobile-wrap {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background: linear-gradient(180deg, var(--mobile-bg-1) 0%, var(--mobile-bg-2) 100%);
+      }
+
+      .mobile-top-lang {
+        padding-top: 28px;
+        text-align: center;
+        color: #d5d9df;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .mobile-screen {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 24px 16px;
+      }
+
+      .mobile-logo {
+        width: 84px;
+        height: 84px;
+        margin: 30px 0 44px;
+        display: block;
+      }
+
+      .mobile-form {
+        width: 100%;
+        max-width: 760px;
+      }
+
+      .mobile-field {
+        margin-bottom: 24px;
+      }
+
+      .mobile-field input {
+        width: 100%;
+        height: 72px;
+        background: rgba(18,33,44,.54);
+        border: 2px solid rgba(96,129,154,.58);
+        border-radius: 22px;
+        color: #dfe6ee;
+        padding: 0 32px;
+        font-size: 28px;
+        outline: none;
+      }
+
+      .mobile-field input::placeholder {
+        color: #98a9b9;
+      }
+
+      .mobile-btn {
+        width: 100%;
+        height: 84px;
+        border: none;
+        border-radius: 999px;
+        background: #1267da;
+        color: #f1f5fb;
+        font-size: 32px;
+        font-weight: 500;
+        margin-top: 6px;
+      }
+
+      .mobile-forgot {
+        display: block;
+        text-align: center;
+        color: #fff;
+        font-size: 24px;
+        font-weight: 500;
+        margin: 28px 0 78px;
+      }
+
+      .mobile-create {
+        margin-top: auto;
+        width: 100%;
+        height: 92px;
+        border-radius: 999px;
+        border: 3px solid var(--mobile-outline);
+        background: transparent;
+        color: #42a1ff;
+        font-size: 31px;
+        font-weight: 500;
+      }
+
+      .mobile-meta {
+        display: flex;
+        justify-content: center;
+        margin: 34px 0 22px;
+      }
+
+      .mobile-bottom-bar {
+        background: rgba(53,51,52,.95);
+        height: 94px;
+        border-top-left-radius: 24px;
+        border-top-right-radius: 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 0 18px;
+      }
+
+      .bar-left, .bar-right {
+        color: #ececec;
+        font-size: 34px;
+        line-height: 1;
+      }
+
+      .bar-center {
+        flex: 1;
+        height: 58px;
+        background: #3f3d40;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 26px;
+        font-weight: 500;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .mobile-field input {
+        font-size: 20px;
+        height: 62px;
+        padding: 0 24px;
+      }
+
+      .mobile-btn {
+        height: 72px;
+        font-size: 24px;
+      }
+
+      .mobile-create {
+        height: 72px;
+        font-size: 22px;
+      }
+
+      .mobile-forgot {
+        font-size: 18px;
+      }
+
+      .mobile-bottom-bar {
+        height: 82px;
+      }
+
+      .bar-center {
+        height: 50px;
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <main class="main">
+      <section class="visual">
+        <div class="visual-inner">
+          <div class="hero-copy">
+            <svg class="hero-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Instagram icon">
+              <defs>
+                <linearGradient id="g1" x1="0" y1="100" x2="100" y2="0">
+                  <stop offset="0%" stop-color="#feda75"/>
+                  <stop offset="35%" stop-color="#fa7e1e"/>
+                  <stop offset="60%" stop-color="#d62976"/>
+                  <stop offset="85%" stop-color="#962fbf"/>
+                  <stop offset="100%" stop-color="#4f5bd5"/>
+                </linearGradient>
+              </defs>
+              <rect x="0" y="0" width="100" height="100" rx="24" fill="url(#g1)"/>
+              <rect x="22" y="22" width="56" height="56" rx="16" fill="none" stroke="#fff" stroke-width="6"/>
+              <circle cx="50" cy="50" r="15" fill="none" stroke="#fff" stroke-width="6"/>
+              <circle cx="73" cy="27" r="4.5" fill="#fff"/>
+            </svg>
+
+            <h1 class="hero-title">
+              See everyday moments from your
+              <span class="grad">close friends.</span>
+            </h1>
+
+            <div class="stack-wrap">
+              <div class="badge-bubble">💬👀🥳</div>
+              <div class="badge-heart">❤</div>
+              <div class="badge-status">★✓</div>
+              <div class="badge-ring"></div>
+
+              <div class="card-photo card-a">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80" alt="Photo card 1" loading="lazy">
+              </div>
+              <div class="card-photo card-b">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=500&q=80" alt="Photo card 2" loading="lazy">
+              </div>
+              <div class="card-photo card-c">
+                <img src="https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=500&q=80" alt="Photo card 3" loading="lazy">
+              </div>
+
+              <div class="pill-1"></div>
+              <div class="pill-2"></div>
+              <div class="pill-heart">♡</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="auth-side">
+        <div class="auth-box">
+          <div class="auth-title">Log into Instagram</div>
+
+          <form onsubmit="event.preventDefault(); alert('Static demo page only.');">
+            <div class="field">
+              <input type="text" placeholder="Mobile number, username or email" required>
+            </div>
+            <div class="field">
+              <input type="password" placeholder="Password" required>
+            </div>
+            <button class="btn btn-login" type="submit">Log in</button>
+          </form>
+
+          <a class="forgot" href="#">Forgot password?</a>
+
+          <button class="btn btn-outline" type="button">
+            <span class="fb-icon">f</span>
+            Log in with Facebook
+          </button>
+
+          <button class="btn btn-outline blue" type="button">Create new account</button>
+
+          <div class="meta-block">
+            <svg class="meta-svg" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" aria-label="Meta logo">
+              <path d="M18 28c0-8 4-16 8-16 5 0 9 16 14 16 4 0 6-5 6-10 0-6-3-10-8-10-7 0-11 7-14 13C21 15 17 8 10 8 5 8 2 12 2 18c0 5 2 10 6 10 5 0 9-16 14-16 4 0 8 8 8 16" fill="none" stroke="#f4f4f4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              <text x="58" y="28" fill="#f4f4f4" font-size="22" font-family="Inter, Arial, sans-serif">Meta</text>
+            </svg>
+            <div class="uk-note">
+              In the UK, you can create a detailed report for something that breaks the law.
+              <a href="#">Fill in form</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="#">Meta</a>
+        <a href="#">About</a>
+        <a href="#">Blog</a>
+        <a href="#">Jobs</a>
+        <a href="#">Help</a>
+        <a href="#">API</a>
+        <a href="#">Privacy</a>
+        <a href="#">Cookie Settings</a>
+        <a href="#">Terms</a>
+        <a href="#">Locations</a>
+        <a href="#">Instagram Lite</a>
+        <a href="#">Meta AI</a>
+        <a href="#">Threads</a>
+        <a href="#">Contact Uploading & Non-Users</a>
+        <a href="#">Meta Verified</a>
+      </div>
+      <div class="footer-bottom-wrap">
+        <select class="footer-select" aria-label="Language">
+          <option>English</option>
+        </select>
+        <div>© 2026 Instagram from Meta</div>
+      </div>
+    </footer>
+
+    <div class="mobile-wrap">
+      <div class="mobile-top-lang">English (US)</div>
+
+      <div class="mobile-screen">
+        <svg class="mobile-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Instagram icon">
+          <defs>
+            <linearGradient id="g2" x1="0" y1="100" x2="100" y2="0">
+              <stop offset="0%" stop-color="#feda75"/>
+              <stop offset="35%" stop-color="#fa7e1e"/>
+              <stop offset="60%" stop-color="#d62976"/>
+              <stop offset="85%" stop-color="#962fbf"/>
+              <stop offset="100%" stop-color="#4f5bd5"/>
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="100" height="100" rx="24" fill="url(#g2)"/>
+          <rect x="22" y="22" width="56" height="56" rx="16" fill="none" stroke="#fff" stroke-width="6"/>
+          <circle cx="50" cy="50" r="15" fill="none" stroke="#fff" stroke-width="6"/>
+          <circle cx="73" cy="27" r="4.5" fill="#fff"/>
+        </svg>
+
+        <form class="mobile-form" onsubmit="event.preventDefault(); alert('Static demo page only.');">
+          <div class="mobile-field">
+            <input type="text" placeholder="Username, email or mobile number" required>
+          </div>
+          <div class="mobile-field">
+            <input type="password" placeholder="Password" required>
+          </div>
+          <button class="mobile-btn" type="submit">Log in</button>
+        </form>
+
+        <a class="mobile-forgot" href="#">Forgot password?</a>
+
+        <button class="mobile-create" type="button">Create new account</button>
+
+        <div class="mobile-meta">
+          <svg class="meta-svg" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" aria-label="Meta logo">
+            <path d="M18 28c0-8 4-16 8-16 5 0 9 16 14 16 4 0 6-5 6-10 0-6-3-10-8-10-7 0-11 7-14 13C21 15 17 8 10 8 5 8 2 12 2 18c0 5 2 10 6 10 5 0 9-16 14-16 4 0 8 8 8 16" fill="none" stroke="#f4f4f4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="58" y="28" fill="#f4f4f4" font-size="22" font-family="Inter, Arial, sans-serif">Meta</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="mobile-bottom-bar">
+        <div class="bar-left">▱</div>
+        <div class="bar-center">instagram.com</div>
+        <div class="bar-right">↻</div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
